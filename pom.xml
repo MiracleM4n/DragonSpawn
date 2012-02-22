@@ -1,37 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">    <modelVersion>4.0.0</modelVersion>
     <groupId>in.mDev</groupId>
-    <artifactId>SetSpeed</artifactId>
+    <artifactId>DragonSpawn</artifactId>
     <version>DEV</version>
-    <name>SetSpeed</name>
+    <name>DragonSpawn</name>
     <url>http://mDev.in/</url>
+
     <properties>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <api.version>unknown</api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <build.number>Unknown</build.number>
+        <m.version>1.1</m.version>
+        <p.version>R8_2</p.version>
     </properties>
+
     <repositories>
         <repository>
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
-            <releases>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>cward-repo</id>
-            <url>http://repo.chrisgward.com/repository</url>
-            <releases>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spout-repo</id>
-            <url>http://repo.getspout.org</url>
             <releases>
                 <updatePolicy>always</updatePolicy>
             </releases>
@@ -67,14 +51,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.1-R1</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.getspout</groupId>
-            <artifactId>spoutpluginapi</artifactId>
-            <version>dev-SNAPSHOT</version>
+            <version>1.1-R4</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
