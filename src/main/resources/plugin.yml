@@ -1,0 +1,28 @@
+name: SetSpeed
+main: in.mDev.MiracleM4n.SetSpeed.SetSpeed
+version: 1.1-2
+website: 
+author: MiracleM4n
+softdepend: [Spout]
+description: Set Your Speed :O
+commands:
+    setspeed:
+        description: Set Speed
+        usage: |
+            [SetSpeed Help]
+            /<command> 10 - sets your speed to 10x normal.
+            /<command> 10 *Player* - sets Player's speed to 10x normal.
+            /<command> 10 -world *World* - sets all player's speeds in world World to 10x normal.
+            /<command> 10 -world -all - sets all player's speeds to 10x normal.
+        aliases: [ss,sspeed,sets]
+    speedoff: 
+        description: Turn Speed Off
+        usage: |
+            /<command>
+        aliases: [soff,ssoff]
+    speedon:
+        description: Turn Speed On
+        usage: |
+            /<command>
+        aliases: [son,sson]
+            
