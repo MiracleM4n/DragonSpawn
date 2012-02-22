@@ -10,10 +10,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class DragonSpawn extends JavaPlugin {
     // Default Plugin Data
@@ -32,6 +29,7 @@ public class DragonSpawn extends JavaPlugin {
     float sDiff;
 
     public List<Long> spawn = new ArrayList<Long>();
+    public List<UUID> UUIDs = new ArrayList<UUID>();
 
     public void onEnable() {
         // 1st Startup Timer
@@ -57,6 +55,9 @@ public class DragonSpawn extends JavaPlugin {
 
         // Setup Command
         getCommand("dragonspawn").setExecutor(new CommandSender(this));
+
+        // Setup Event
+        pm.registerEvents(new EntityListener(this), this);
 
         // 2nd Startup Timer
         sTime2 = new Date().getTime();
@@ -103,16 +104,17 @@ public class DragonSpawn extends JavaPlugin {
                 if (count >= config.getInt("int.maxInWorld"))
                     return;
 
-                if (spawn.size() > config.getInt("int.maxSpawnPerDay"))
+                if (spawn.size() >= config.getInt("int.maxSpawnPerDay"))
                     return;
 
                 if (getAPI().isPercent(config.getInt("int.spawnChance"))) {
-                    world.spawnCreature(world.getSpawnLocation().add(0,200,0), CreatureType.ENDER_DRAGON);
+                    UUIDs.add(world.spawnCreature(world.getSpawnLocation().add(0, 200, 0), CreatureType.ENDER_DRAGON).getUniqueId());
                     getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getList("message.dSpawned"))).replace("%world%", world.getName()));
                     spawn.add(new Date().getTime());
                 }
             }
-        }, 20L * 60L * config.getInt("int.timerLoop"), 20L * 60L * config.getInt("int.timerLoop"));
+        }, 20L * config.getInt("int.timerLoop"), 20L * config.getInt("int.timerLoop"));
+        //}, 20L * 60L * config.getInt("int.timerLoop"), 20L * 60L * config.getInt("int.timerLoop"));
 
         getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
             public void run() {
@@ -137,6 +139,8 @@ public class DragonSpawn extends JavaPlugin {
         checkOption("int.spawnDay", 1440);
 
         checkOption("spawn.world", "Reconfigure_This_World");
+
+        checkOption("dragon.droppedExp", 20000);
     }
 
     void checkOption(String option, Object defValue) {
