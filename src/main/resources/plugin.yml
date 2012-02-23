@@ -1,6 +1,6 @@
 name: DragonSpawn
 main: in.mDev.MiracleM4n.DragonSpawn.DragonSpawn
-version: ${m.version}-${build.number}-${m.version}
+version: ${m.version}-${build.number}-${p.version}
 website: 
 author: MiracleM4n
 softdepend: [Spout]
