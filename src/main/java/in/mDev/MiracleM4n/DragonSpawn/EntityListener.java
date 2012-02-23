@@ -2,6 +2,7 @@ package in.mDev.MiracleM4n.DragonSpawn;
 
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
@@ -12,7 +13,7 @@ public class EntityListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onEntityDeath(EntityDeathEvent event) {
         if (!(event.getEntity() instanceof EnderDragon))
             return;
