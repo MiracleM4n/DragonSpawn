@@ -29,7 +29,6 @@ public class DragonSpawn extends JavaPlugin {
     float sDiff;
 
     public List<Long> spawn = new ArrayList<Long>();
-    public List<UUID> UUIDs = new ArrayList<UUID>();
 
     public void onEnable() {
         // 1st Startup Timer
@@ -108,35 +107,59 @@ public class DragonSpawn extends JavaPlugin {
                     return;
 
                 if (getAPI().isPercent(config.getInt("int.spawnChance"))) {
-                    UUIDs.add(world.spawnCreature(world.getSpawnLocation().add(0, 200, 0), CreatureType.ENDER_DRAGON).getUniqueId());
+                    world.spawnCreature(world.getSpawnLocation().add(0, 200, 0), CreatureType.ENDER_DRAGON);
                     getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getList("message.dSpawned"))).replace("%world%", world.getName()));
                     spawn.add(new Date().getTime());
                 }
             }
-        }, 20L * config.getInt("int.timerLoop"), 20L * config.getInt("int.timerLoop"));
-        //}, 20L * 60L * config.getInt("int.timerLoop"), 20L * 60L * config.getInt("int.timerLoop"));
+        }, 20L * 60L * config.getInt("int.timerLoop"), 20L * 60L * config.getInt("int.timerLoop"));
 
         getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
             public void run() {
                 spawn = new ArrayList<Long>();
             }
         }, 20L * 60L * config.getInt("int.spawnDay"), 20L * 60L * config.getInt("int.spawnDay"));
+
+        getServer().getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
+            public void run() {
+                World world = getServer().getWorld(config.getString("spawn.world"));
+
+                if (world == null)
+                    return;
+
+                Integer count = 0;
+
+                for (Entity entity : world.getEntities())
+                    if (entity instanceof EnderDragon)
+                        count++;
+
+                if (count > 0)
+                    getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getList("message.isAlive"))).replace("%world%", world.getName()));
+            }
+        }, 20L * config.getInt("int.messageReplay"), 20L * config.getInt("int.messageReplay"));
     }
 
     void setupConfig() {
         ArrayList<String> fList = new ArrayList<String>();
+        ArrayList<String> dList = new ArrayList<String>();
 
         fList.add("&6[Server] Get to %world% a dragon has spawned.");
         fList.add("&6[Server] A dragon just spawned in %world%, Hurry before it is killed.");
         fList.add("&6[Server] Better get to %world% a DRAGON has just spawned.");
 
+        dList.add("&6[Server] There is still a Dragon alive in %world% kill it Nao.");
+        dList.add("&6[Server] A Dragon is lurking in %world% end it.");
+        dList.add("&6[Server] What A Dragon you say? Get to %world% to destroy it.");
+
         checkOption("message.dSpawned", fList);
+        checkOption("message.isAlive", dList);
 
         checkOption("int.maxInWorld", 2);
         checkOption("int.maxSpawnPerDay", 2);
         checkOption("int.spawnChance", 10);
         checkOption("int.timerLoop", 60);
         checkOption("int.spawnDay", 1440);
+        checkOption("int.messageReplay", 60);
 
         checkOption("spawn.world", "Reconfigure_This_World");
 
