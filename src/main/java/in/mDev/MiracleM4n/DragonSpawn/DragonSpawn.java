@@ -2,9 +2,9 @@ package in.mDev.MiracleM4n.DragonSpawn;
 
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -107,7 +107,7 @@ public class DragonSpawn extends JavaPlugin {
                     return;
 
                 if (getAPI().isPercent(config.getInt("int.spawnChance"))) {
-                    world.spawnCreature(world.getSpawnLocation().add(0, 200, 0), CreatureType.ENDER_DRAGON);
+                    world.spawnCreature(world.getSpawnLocation().add(0, 200, 0), EntityType.ENDER_DRAGON);
                     getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getList("message.dSpawned"))).replace("%world%", world.getName()));
                     spawn.add(new Date().getTime());
                 }
