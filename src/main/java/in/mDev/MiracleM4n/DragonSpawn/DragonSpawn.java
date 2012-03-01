@@ -26,7 +26,7 @@ public class DragonSpawn extends JavaPlugin {
     // Timers
     long sTime1;
     long sTime2;
-    float sDiff;
+    long sDiff;
 
     public List<Long> spawn = new ArrayList<Long>();
 
@@ -62,9 +62,9 @@ public class DragonSpawn extends JavaPlugin {
         sTime2 = new Date().getTime();
 
         // Calculate Startup Timer
-        sDiff = ((float) sTime2 - sTime1) / 1000;
+        sDiff = (sTime2 - sTime1);
 
-        getAPI().log("[" + pdfFile.getName() + "] " + pdfFile.getName() + " v" + pdfFile.getVersion() + " is enabled! [" + sDiff + "s]");
+        getAPI().log("[" + pdfFile.getName() + "] " + pdfFile.getName() + " v" + pdfFile.getVersion() + " is enabled! [" + sDiff + "ms]");
     }
 
     public void onDisable() {
