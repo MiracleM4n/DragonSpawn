@@ -108,7 +108,7 @@ public class DragonSpawn extends JavaPlugin {
 
                 if (getAPI().isPercent(config.getInt("int.spawnChance"))) {
                     world.spawnCreature(world.getSpawnLocation().add(0, 200, 0), EntityType.ENDER_DRAGON);
-                    getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getList("message.dSpawned"))).replace("%world%", world.getName()));
+                    getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getStringList("message.dSpawned"))).replace("%world%", world.getName()));
                     spawn.add(new Date().getTime());
                 }
             }
@@ -134,7 +134,7 @@ public class DragonSpawn extends JavaPlugin {
                         count++;
 
                 if (count > 0)
-                    getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getList("message.isAlive"))).replace("%world%", world.getName()));
+                    getServer().broadcastMessage(getAPI().addColour(getAPI().getRandomString(config.getStringList("message.isAlive"))).replace("%world%", world.getName()));
             }
         }, 20L * config.getInt("int.messageReplay"), 20L * config.getInt("int.messageReplay"));
     }

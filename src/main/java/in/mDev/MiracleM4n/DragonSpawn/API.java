@@ -20,7 +20,7 @@ public class API {
         return rand <= percent;
     }
 
-    String getRandomString(List list) {
+    String getRandomString(List<String> list) {
         if (list.isEmpty())
             return "";
 
@@ -32,7 +32,7 @@ public class API {
         Integer rand = random.nextInt(maxValue - minValue + 1) + minValue;
 
         try {
-            return list.get(rand).toString();
+            return list.get(rand);
         } catch (ArrayIndexOutOfBoundsException ignored) {}
 
         return "";
