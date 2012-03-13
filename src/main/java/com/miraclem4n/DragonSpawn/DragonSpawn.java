@@ -1,4 +1,4 @@
-package in.mDev.MiracleM4n.DragonSpawn;
+package com.miraclem4n.dragonspawn;
 
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;

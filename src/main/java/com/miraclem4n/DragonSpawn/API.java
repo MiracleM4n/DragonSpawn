@@ -1,4 +1,4 @@
-package in.mDev.MiracleM4n.DragonSpawn;
+package com.miraclem4n.dragonspawn;
 
 import java.util.List;
 import java.util.Random;

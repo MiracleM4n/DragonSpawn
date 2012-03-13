@@ -1,9 +1,8 @@
 name: DragonSpawn
-main: in.mDev.MiracleM4n.DragonSpawn.DragonSpawn
+main: com.miraclem4n.dragonspawn.DragonSpawn
 version: ${m.version}-${build.number}-${p.version}
-website: 
+website: http://mdev.in
 author: MiracleM4n
-softdepend: [Spout]
 description: Random Dragon Spawning
 commands:
     dragonspawn:
