@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 public class CommandSender implements CommandExecutor {
     DragonSpawn plugin;
-    
+
     public CommandSender(DragonSpawn plugin) {
         this.plugin = plugin;
     }
